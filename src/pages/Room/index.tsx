@@ -36,7 +36,7 @@ interface IRoomInfo {
   times: number;
 }
 
-const maxFillNum = 10; // 最好偶数
+const maxFillNum = 20; // 最好偶数
 
 function Room({ history }) {
   const [room] = store.useModel('room');
@@ -100,12 +100,16 @@ function Room({ history }) {
     const list: number[] = [];
     if (users[playerIdx]) {
       if (users[playerIdx].watched) {
-        for (let i = base; i <= maxFillNum; i++) {
-          list.push(i);
+        for (let i = base + 1; i <= maxFillNum; i++) {
+          if ([2,5,10,20].includes(i)){
+            list.push(i);
+          }
         }
       } else {
-        for (let i = Math.ceil(base / 2); i <= maxFillNum / 2; i++) {
-          list.push(i);
+        for (let i = Math.ceil(base / 2) - 1; i <= maxFillNum / 2; i++) {
+          if ([2,5,10,20].includes(i)){
+            list.push(i);
+          }
         }
       }
       setFillList(list);
@@ -297,7 +301,7 @@ function Room({ history }) {
         onCancel={() => setFillModalVisible(false)}
         title="下注"
         onOk={() => {
-          socket.emit('fill', { currBase: users[playerIdx].watched ? currBase : currBase! * 2, id: roomId, username });
+          socket.emit('fill', { currBase: users[playerIdx].watched ? currBase : currBase!, id: roomId, username });
           setFillModalVisible(false);
         }}
       >
