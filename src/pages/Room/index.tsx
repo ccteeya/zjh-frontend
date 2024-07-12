@@ -212,7 +212,7 @@ function Room({ history }) {
     if (start && !item.watched && item.ready) {
       return (
         <>
-          <p>未看牌-{item.name !== username && item.currBase > 0 && <span>下注【{item.currBase}】</span>}</p>
+          <p>【*闷一手*】{item.name !== username && item.currBase > 0 && <span>下注【{item.currBase}】</span>}</p>
           {playerIdx === index && btnGroupContent(item)}
         </>
       );
@@ -220,7 +220,7 @@ function Room({ history }) {
     if (item.name !== username && item.watched) {
       return (
         <p>
-          【*已看牌*】-
+          已看牌 -
           {item.currBase > 0 && <span>下注【{item.currBase}】</span>}
         </p>
       );
