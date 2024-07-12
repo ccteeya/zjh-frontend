@@ -12,6 +12,7 @@ import { useRequest } from 'ice';
 import { formatPoker } from '@/utils/formatPoker';
 
 import ScoreList from './components/ScoreList';
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 export interface IUser {
   name: string;
@@ -211,7 +212,7 @@ function Room({ history }) {
     if (start && !item.watched && item.ready) {
       return (
         <>
-          <p>未看牌...{item.name !== username && item.currBase > 0 && <span>下{item.currBase}</span>}</p>
+          <p>未看牌-{item.name !== username && item.currBase > 0 && <span>下注【{item.currBase}】</span>}</p>
           {playerIdx === index && btnGroupContent(item)}
         </>
       );
@@ -219,8 +220,8 @@ function Room({ history }) {
     if (item.name !== username && item.watched) {
       return (
         <p>
-          已看牌...
-          {item.currBase > 0 && <span>下{item.currBase}</span>}
+          【*已看牌*】-
+          {item.currBase > 0 && <span>下注【{item.currBase}】</span>}
         </p>
       );
     }
