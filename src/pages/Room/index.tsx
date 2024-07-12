@@ -97,21 +97,23 @@ function Room({ history }) {
   }, [start, playerIdx, username, users]);
 
   useEffect(() => {
-    const list: number[] = [];
+    // const list: number[] = [];
+    const list: number[] = [2,5,10,20]; //下注值數組
     if (users[playerIdx]) {
-      if (users[playerIdx].watched) {
-        for (let i = base + 1; i <= maxFillNum; i++) {
-          if ([2,5,10,20].includes(i)){
-            list.push(i);
-          }
-        }
-      } else {
-        for (let i = Math.ceil(base / 2) - 1; i <= maxFillNum / 2; i++) {
-          if ([2,5,10,20].includes(i)){
-            list.push(i);
-          }
-        }
-      }
+      
+      // if (users[playerIdx].watched) {
+      //   for (let i = base + 1; i <= maxFillNum; i++) {
+      //     if ([2,5,10,20].includes(i)){
+      //       list.push(i);
+      //     }
+      //   }
+      // } else {
+      //   for (let i = Math.ceil(base / 2) - 1; i <= maxFillNum / 2; i++) {
+      //     if ([2,5,10,20].includes(i)){
+      //       list.push(i);
+      //     }
+      //   }
+      // }
       setFillList(list);
     }
   }, [base, playerIdx, users]);
